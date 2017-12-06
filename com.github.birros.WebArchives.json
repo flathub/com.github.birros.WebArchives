@@ -12,7 +12,9 @@
         "--socket=pulseaudio",
         "--talk-name=org.freedesktop.Tracker1",
         "--filesystem=home",
-        "--share=network"
+        "--share=network",
+        "--talk-name=org.gtk.vfs",
+        "--talk-name=org.gtk.vfs.*"
     ],
     "build-options" : {
         "cflags": "-O2 -g",
@@ -267,8 +269,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/birros/web-archives/archive/v0.0.1.tar.gz",
-                    "sha256": "f613b7e500fe8791e2c1ceeaf3633aa0617c96bbece5249af491031cd726a0fc"
+                    "url": "https://github.com/birros/web-archives/archive/v0.0.2.tar.gz",
+                    "sha256": "f08f30bbdec3d3dfc601fdd2016b8a199d3712c451c7bea883c2cb12e7b73edb"
                 }
             ]
         }
