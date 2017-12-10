@@ -269,8 +269,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/birros/web-archives/archive/v0.0.2.tar.gz",
-                    "sha256": "f08f30bbdec3d3dfc601fdd2016b8a199d3712c451c7bea883c2cb12e7b73edb"
+                    "url": "https://github.com/birros/web-archives/archive/v0.0.3.tar.gz",
+                    "sha256": "c238573b581a08c574c062d70d2d97ee72b7ba6ef5948e2bf46b593fdd29de02"
                 }
             ]
         }
