@@ -9,11 +9,18 @@ finish-args:
   - --share=ipc
   - --device=dri
   - --socket=pulseaudio
-  - --talk-name=org.freedesktop.Tracker1
+  # Used to list automatically indexed local files
   - --filesystem=home
+  - --talk-name=org.freedesktop.Tracker1
+  # Used to access gvfs's http backend to download files
   - --share=network
   - --talk-name=org.gtk.vfs
   - --talk-name=org.gtk.vfs.*
+  # Dconf access
+  - --filesystem=xdg-run/dconf
+  - --filesystem=~/.config/dconf:ro
+  - --talk-name=ca.desrt.dconf
+  - --env=DCONF_USER_CONFIG_DIR=.config/dconf
 build-options:
   cflags: -O2 -g
   cxxflags: -O2 -g
@@ -28,8 +35,8 @@ modules:
       - /share
     sources:
       - type: archive
-        url: https://oligarchy.co.uk/xapian/1.4.5/xapian-core-1.4.5.tar.xz
-        sha256: 85b5f952de9df925fd13e00f6e82484162fd506d38745613a50b0a2064c6b02b
+        url: https://oligarchy.co.uk/xapian/1.4.6/xapian-core-1.4.6.tar.xz
+        sha256: 1e0ef1c1d3e2119874d545b7edbb60e6e17d7d18fb802eb890d9ef7bb0bbd898
 
   #
   # require
@@ -132,14 +139,28 @@ modules:
         url: http://snapshot.debian.org/archive/debian/20150603T050256Z/pool/main/libi/libisocodes/libisocodes_1.2.2.orig.tar.xz
         sha256: 4cdf2c02486bb44902d95e2b86356ef348c65b5edff75925d6878fe5e5f038de
 
+  - name: libhandy
+    buildsystem: meson
+    builddir: true
+    cleanup:
+      - /bin
+      - /include
+      - /lib/girepository-1.0
+      - /lib/pkgconfig
+      - /share
+    sources:
+      - type: archive
+        url: https://source.puri.sm/Librem5/libhandy/-/archive/v0.0.1/libhandy-v0.0.1.tar.gz
+        sha256: 7bf2fb189c3a138908e0a7e0366b7289bcc976db5becb12331c73c29f43a87c3
+
   #
   # require
-  #   libzim-glib, tracker, libisocodes
+  #   libzim-glib, tracker, libisocodes, libhandy
   #
   - name: web-archives
     buildsystem: meson
     builddir: true
     sources:
       - type: archive
-        url: https://github.com/birros/web-archives/archive/v0.0.6.tar.gz
-        sha256: 858bdcf8524ab159de82e37b71909bad9fa57e976e25c9e41c24495037ffb877
+        url: https://github.com/birros/web-archives/archive/v0.1.0.tar.gz
+        sha256: 1a1f13792c40ae4a33b4b176fc3c99f74415167013071f25134570348aac6324
