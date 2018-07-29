@@ -172,7 +172,7 @@ modules:
     builddir: true
     sources:
       - type: git
-        url: https://github.com/birros/web-archives
+        url: https://github.com/birros/web-archives.git
         tag: v0.2.0
         commit: e89b8bfa2c0194809b70efe2107e2e3e389d69fa
       #
