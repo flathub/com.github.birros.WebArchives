@@ -95,7 +95,6 @@ modules:
       - /libexec
       - /share/dbus-1
       - /share/gir-1.0
-      - /share/glib-2.0
       - /share/gtk-doc
       - /share/man
       - /share/runtime
@@ -173,8 +172,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/birros/web-archives.git
-        #tag: v0.2.0
-        commit: 4bf6cb589bfaf8f417670a731f450f0647a6c634
+        tag: v0.2.1
+        commit: 74ae7152263ad4c9bd8c310057e5bfe418b1f7f6
       #
       # preinstall npm packages, darkreader-npm-cache.json was generated using
       # github.com/flatpak/flatpak-builder-tools/npm from package-lock.json
