@@ -51,8 +51,8 @@ modules:
       - /lib/pkgconfig
     sources:
       - type: archive
-        url: https://github.com/openzim/libzim/archive/4.0.2.tar.gz
-        sha256: cb9a853ecdab3c43099b1b36861ef6c9ccfab64cf12be148fe87389e92a17b47
+        url: https://github.com/openzim/libzim/archive/4.0.3.tar.gz
+        sha256: d246c5ed4839780215a4070e3f412bae9511a7201a881b1bfa93e3363af32017
 
   #
   # require
@@ -172,8 +172,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/birros/web-archives.git
-        tag: v0.2.2
-        commit: 12c40e6db40fba0d297404fdd26b438cdd1705d9
+        tag: v0.3.0
+        commit: a219a5c801fd60e81d6393e93500dc2aa6465c30
       #
       # preinstall npm packages, darkreader-npm-cache.json was generated using
       # github.com/flatpak/flatpak-builder-tools/npm from package-lock.json
