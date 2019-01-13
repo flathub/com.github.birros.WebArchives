@@ -182,8 +182,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/birros/web-archives.git
-        tag: v0.3.1
-        #commit: 72f0516c128fc83ca560a039e19e51b06f9c0b09
+        #tag: v0.3.1
+        commit: 0863bc7297c3d73d465ec88aa55715fbcd4de6af
       #
       # preinstall npm packages, darkreader-npm-cache.json was generated using
       # github.com/flatpak/flatpak-builder-tools/npm from package-lock.json
