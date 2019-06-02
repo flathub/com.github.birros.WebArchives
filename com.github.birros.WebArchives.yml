@@ -25,13 +25,6 @@ finish-args:
   - --talk-name=ca.desrt.dconf
   - --env=DCONF_USER_CONFIG_DIR=.config/dconf
 modules:
-  - name: nodejs
-    cleanup:
-      - /*
-    buildsystem: simple
-    build-commands:
-      - '/usr/lib/sdk/node10/install.sh'
-
   - name: xapian-core
     config-opts:
       - --disable-sse
@@ -181,7 +174,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/birros/web-archives.git
-        commit: a43b0bbff6b6d6dad200d17524ba82ae3b877a13
+        commit: c11a75c1149c0eaf3923a53fbc520f7e7af1c9c1
       #
       # preinstall npm packages, generated-sources.*.json was generated using
       # github.com/flatpak/flatpak-builder-tools/node from package-lock.json
