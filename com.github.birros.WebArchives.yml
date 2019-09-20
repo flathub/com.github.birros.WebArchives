@@ -1,6 +1,6 @@
 id: com.github.birros.WebArchives
 runtime: org.gnome.Platform
-runtime-version: '3.32'
+runtime-version: '3.34'
 sdk: org.gnome.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.node10
@@ -19,16 +19,14 @@ finish-args:
   - --share=network
   - --talk-name=org.gtk.vfs
   - --talk-name=org.gtk.vfs.*
-  # Dconf access
-  - --filesystem=xdg-run/dconf
-  - --filesystem=~/.config/dconf:ro
-  - --talk-name=ca.desrt.dconf
-  - --env=DCONF_USER_CONFIG_DIR=.config/dconf
+  # Dconf migration (TODO: to remove around 2020)
+  - --metadata=X-DConf=migrate-path=/com/github/birros/WebArchives/
 modules:
   - name: xapian-core
     config-opts:
       - --disable-sse
       - --disable-backend-chert
+      - --disable-backend-remote
       - --disable-backend-inmemory
       - --disable-documentation
     cleanup:
@@ -50,14 +48,16 @@ modules:
   - name: libzim
     buildsystem: meson
     builddir: true
+    config-opts:
+      - --wrap-mode=nodownload
     cleanup:
       - /bin
       - /include
       - /lib/pkgconfig
     sources:
       - type: archive
-        url: https://github.com/openzim/libzim/archive/5.0.1.tar.gz
-        sha256: b567fd90be772a47dfc9120f95344f46441f5fa5f8780e44726903b14e27a894
+        url: https://github.com/openzim/libzim/archive/6.0.1.tar.gz
+        sha256: 3e710de412e5a60ab07ef72dfae243147747ff531acc5cbed2cba7064bd0733b
 
   #
   # require
@@ -100,8 +100,8 @@ modules:
       - /share/vala
     sources:
       - type: archive
-        url: https://ftp.gnome.org/pub/GNOME/sources/tracker/2.2/tracker-2.2.2.tar.xz
-        sha256: c6a73462f9aa9c32efa139003d2abd2ac5f70f8af6ce744729954975a661e2e6
+        url: https://ftp.gnome.org/pub/GNOME/sources/tracker/2.3/tracker-2.3.0.tar.xz
+        sha256: 2c04534da83419b0bc65216e367da51a420f52bb8449f4cc4542c651e5c6bf7b
 
   - name: libgee
     build-options:
@@ -116,8 +116,8 @@ modules:
       - /share
     sources:
       - type: archive
-        url: http://snapshot.debian.org/archive/debian/20180312T232337Z/pool/main/libg/libgee-0.8/libgee-0.8_0.20.1.orig.tar.xz
-        sha256: bb2802d29a518e8c6d2992884691f06ccfcc25792a5686178575c7111fea4630
+        url: http://snapshot.debian.org/archive/debian/20190814T034625Z/pool/main/libg/libgee-0.8/libgee-0.8_0.20.2.orig.tar.xz
+        sha256: 9e035c4b755f46bfae70ba81cdcf8328b03f554373cec8c816e8b5680f85353c
       #
       # Following fixes pkg-config error
       #
@@ -155,8 +155,8 @@ modules:
       - /share
     sources:
       - type: archive
-        url: https://source.puri.sm/Librem5/libhandy/-/archive/v0.0.10/libhandy-v0.0.10.tar.gz
-        sha256: 9f4528c07bdb9796300ff0efb165cdc48cfcd7f28952c9d776de15b735844981
+        url: https://source.puri.sm/Librem5/libhandy/-/archive/v0.0.11/libhandy-v0.0.11.tar.gz
+        sha256: c7e7b51203d9221c50b1a38ba81e0aefb5ab906c55e85b6ca2d0501e907e077d
 
   #
   # require
@@ -174,7 +174,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/birros/web-archives.git
-        commit: 34ba7b9c2fa6c47b1be0fdadbcc7121094a0ad15
+        commit: 70c556e943469dce42350d6fbcf9505edd0da049
       #
       # preinstall npm packages, generated-sources.*.json was generated using
       # github.com/flatpak/flatpak-builder-tools/node from package-lock.json
