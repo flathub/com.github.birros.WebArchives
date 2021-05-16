@@ -64,8 +64,8 @@ modules:
       - /lib/pkgconfig
     sources:
       - type: archive
-        url: https://github.com/openzim/libzim/archive/6.3.0.tar.gz
-        sha256: 984d2f3881c507c9f0212dc2bc1b808d25cdeef6a62043f9211fcb78a231a986
+        url: https://github.com/openzim/libzim/archive/6.2.2.tar.gz
+        sha256: 6619035d35c9ba057c80be5758fa86922802c74aca40e5fffd40b77f0f263af2
 
   #
   # require
@@ -155,7 +155,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/birros/web-archives.git
-        commit: 49827c8a4ef58af2d4d789fa0a74f00daba01176
+        commit: 8c7809d2fb3df9c1acd2c76057766c408d836e1a
       #
       # preinstall npm packages, generated-sources.*.json was generated using
       # github.com/flatpak/flatpak-builder-tools/node from package-lock.json
