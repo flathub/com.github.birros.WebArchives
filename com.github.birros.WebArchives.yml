@@ -155,7 +155,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/birros/web-archives.git
-        commit: 8c7809d2fb3df9c1acd2c76057766c408d836e1a
+        commit: 6c055b78827c4cead03fad276bef537bf3c49db7
       #
       # preinstall npm packages, generated-sources.*.json was generated using
       # github.com/flatpak/flatpak-builder-tools/node from package-lock.json
