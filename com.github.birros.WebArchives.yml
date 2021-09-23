@@ -1,9 +1,9 @@
 id: com.github.birros.WebArchives
 runtime: org.gnome.Platform
-runtime-version: '40'
+runtime-version: '41'
 sdk: org.gnome.Sdk
 sdk-extensions:
-  - org.freedesktop.Sdk.Extension.node14
+  - org.freedesktop.Sdk.Extension.node16
 command: web-archives
 finish-args:
   - --socket=wayland
@@ -149,13 +149,13 @@ modules:
     buildsystem: meson
     builddir: true
     build-options:
-      append-path: /usr/lib/sdk/node14/bin
+      append-path: /usr/lib/sdk/node16/bin
       env:
-        npm_config_nodedir: /usr/lib/sdk/node14
+        npm_config_nodedir: /usr/lib/sdk/node16
     sources:
       - type: git
         url: https://github.com/birros/web-archives.git
-        commit: 6c055b78827c4cead03fad276bef537bf3c49db7
+        commit: 48999d140902f183aca79dff8d0334d24344e412
       #
       # preinstall npm packages, generated-sources.*.json was generated using
       # github.com/flatpak/flatpak-builder-tools/node from package-lock.json
