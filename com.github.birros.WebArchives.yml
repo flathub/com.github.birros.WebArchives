@@ -1,9 +1,7 @@
 app-id: com.github.birros.WebArchives
 runtime: org.gnome.Platform
-runtime-version: '43'
+runtime-version: '45'
 sdk: org.gnome.Sdk
-sdk-extensions:
-  - org.freedesktop.Sdk.Extension.node16
 command: web-archives
 finish-args:
   - --socket=wayland
@@ -33,8 +31,8 @@ modules:
       - /share
     sources:
       - type: archive
-        url: https://oligarchy.co.uk/xapian/1.4.18/xapian-core-1.4.18.tar.xz
-        sha256: 196ddbb4ad10450100f0991a599e4ed944cbad92e4a6fe813be6dce160244b77
+        url: https://oligarchy.co.uk/xapian/1.4.23/xapian-core-1.4.23.tar.xz
+        sha256: 30d3518172084f310dab86d262b512718a7f9a13635aaa1a188e61dc26b2288c
 
   - name: zstd
     buildsystem: meson
@@ -45,8 +43,8 @@ modules:
       - -Dbin_contrib=false
     sources:
       - type: archive
-        url: https://github.com/facebook/zstd/releases/download/v1.4.8/zstd-1.4.8.tar.gz
-        sha256: 32478297ca1500211008d596276f5367c54198495cf677e9439f4791a4c69f24
+        url: https://github.com/facebook/zstd/releases/download/v1.5.5/zstd-1.5.5.tar.gz
+        sha256: 9c4396cc829cfae319a6e2615202e82aad41372073482fce286fac78646d3ee4
 
   #
   # require
@@ -64,8 +62,8 @@ modules:
       - /lib/pkgconfig
     sources:
       - type: archive
-        url: https://github.com/openzim/libzim/archive/6.2.2.tar.gz
-        sha256: 6619035d35c9ba057c80be5758fa86922802c74aca40e5fffd40b77f0f263af2
+        url: https://github.com/openzim/libzim/archive/8.2.1.tar.gz
+        sha256: b8296644b04b02c04d2ff1458fed829df39b54e8fd1bcd23c10440e160819f13
 
   #
   # require
@@ -81,8 +79,8 @@ modules:
       - /share
     sources:
       - type: archive
-        url: https://github.com/birros/libzim-glib/archive/v3.2.0.tar.gz
-        sha256: 89cbc55254d90c70de2de8ee7f2b4aff97f582ae7f495ddfee518ef136de9357
+        url: https://github.com/birros/libzim-glib/archive/v4.0.0.tar.gz
+        sha256: f5699b35fa4fce9acedb10a518b487c6b7b0050daf25ba661c0a5d9b817de7e5
 
   - name: libgee
     build-options:
@@ -97,8 +95,8 @@ modules:
       - /share
     sources:
       - type: archive
-        url: http://snapshot.debian.org/archive/debian/20210318T211544Z/pool/main/libg/libgee-0.8/libgee-0.8_0.20.4.orig.tar.xz
-        sha256: 524c1bf390f9cdda4fbd9a47b269980dc64ab5280f0801b53bc69d782c72de0e
+        url: https://snapshot.debian.org/archive/debian/20220920T060228Z/pool/main/libg/libgee-0.8/libgee-0.8_0.20.6.orig.tar.xz
+        sha256: 1bf834f5e10d60cc6124d74ed3c1dd38da646787fbf7872220b8b4068e476d4d
       #
       # Following fixes pkg-config error
       #
@@ -122,8 +120,8 @@ modules:
       - /share/vala
     sources:
       - type: archive
-        url: http://snapshot.debian.org/archive/debian/20210127T030125Z/pool/main/libi/libisocodes/libisocodes_1.2.3.orig.tar.xz
-        sha256: 69b63b692838ecc939076d1dc14ff4f72a4e012de8fa852f3b07d20847ed2145
+        url: https://snapshot.debian.org/archive/debian/20210826T205630Z/pool/main/libi/libisocodes/libisocodes_1.2.4.orig.tar.xz
+        sha256: 314623aac6e995f76ab8a3b26dee7d4505f924ff0a85264f060082b6c2435c79
 
   - name: libhandy
     buildsystem: meson
@@ -136,38 +134,22 @@ modules:
       - /share
     sources:
       - type: archive
-        url: https://gitlab.gnome.org/GNOME/libhandy/-/archive/1.2.1/libhandy-1.2.1.tar.gz
-        sha256: 90cee074048310926a1c66278fa10043a220953cc6be03f9f5eb756b6bcd1043
+        url: https://gitlab.gnome.org/GNOME/libhandy/-/archive/1.8.2/libhandy-1.8.2.tar.gz
+        sha256: 2c551aae128dff918b84943a93a58bc9be84f42a709b9e43c8d074538e68c10e
 
   #
   # require
   #   libzim-glib, libisocodes, libhandy
-  # subprojects/darkreader require
-  #   nodejs
   #
   - name: web-archives
     buildsystem: meson
     builddir: true
-    build-options:
-      append-path: /usr/lib/sdk/node16/bin
-      env:
-        npm_config_nodedir: /usr/lib/sdk/node16
     sources:
       - type: git
         url: https://github.com/birros/web-archives.git
-        commit: f476e83e5945fcf0e8bfee840833e8ef3b76f76c
-      #
-      # preinstall npm packages, generated-sources.*.json was generated using
-      # github.com/flatpak/flatpak-builder-tools/node from package-lock.json
-      #
-      - modules/generated-sources.json
-      - type: shell
-        commands:
-          - cd subprojects/darkreader && npm install --cache=../../flatpak-node/npm-cache --offline --no-optional
-      #
-      # prevent 'npm install' from being launched when compiling darkreader, to
-      # avoid the 'cb() never called!' error
-      #
-      - type: shell
-        commands:
-          - sed -i "s/find_program('npm')/find_program('true')/g" subprojects/darkreader/meson.build
+        commit: 92e7932ba777e69c287f590b40f4202b28e569f6
+      - type: file
+        url: https://github.com/birros/web-archives-darkreader/releases/download/v0.0.1/web-archives-darkreader_v0.0.1.js
+        sha256: 8ee840aacd9e09864a7ab2e75f736f696dcd4b4b8e86a07ba727ff3d10ef32a1
+        dest: build-aux/darkreader
+        dest-filename: web-archives-darkreader_v0.0.1.js
