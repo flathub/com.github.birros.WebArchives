@@ -141,7 +141,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/birros/web-archives.git
-        commit: 5c2e59e157a77b8f514b9a64c64190543b97debc
+        commit: c7c6ad0ea1f34bc20d057ab2c3e12e304eebffa8
       - type: file
         url: https://github.com/birros/web-archives-darkreader/releases/download/v0.0.1/web-archives-darkreader_v0.0.1.js
         sha256: 8ee840aacd9e09864a7ab2e75f736f696dcd4b4b8e86a07ba727ff3d10ef32a1
